@@ -29,5 +29,21 @@ trash_data =
   
 ```
 
+### Read and clean precipitation data for 2017 and 2018. 
+ * For each, omit rows without precipitation data and add a variable year. 
 
+```{r}
+precip_17 = 
+  read_excel("./data/mr_trash_wheel.xlsx", sheet = 6, range = "A2:B14") %>%
+  janitor::clean_names() %>%
+  mutate(year = 2017)
 
+```
+
+```{r}
+precip_18 = 
+  read_excel("./data/mr_trash_wheel.xlsx", sheet = 5, range = "A2:B14") %>%
+  janitor::clean_names() %>%
+  mutate(year = 2018)
+
+```
