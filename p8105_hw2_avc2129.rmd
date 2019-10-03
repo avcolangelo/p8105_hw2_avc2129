@@ -1,19 +1,29 @@
 ---
-title: "Homework 1 Solution"
+title: "Homework 2"
 author: Alexis Colangelo
+date: 10/3/2019
 output: github_document
 ---
 
 ```{r setup, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(readxl)
 ```
 
-## Problem 0
+## Problem 1: Mr. Trash Wheel
 
-* create a public GitHub repo + local R Project; we suggest naming this repo / directory p8105_hw2_YOURUNI (e.g. p8105_hw2_ajg2202 for Jeff), but that’s not required
-* create a single .Rmd file named p8105_hw2_YOURUNI.Rmd that renders to github_document
-* create a subdirectory to store the local data files used in Problems 1 and 2, and use relative paths to access these data files submit a link to your repo via Courseworks
+### Read and clean Mr. Trash Wheel sheet
+ * Specify the sheet in the Excel file and to omit non-data entries (rows with notes / figures; columns containing notes) using arguments in read_excel.`
+ * Use reasonable variable names
+ * Omit rows that do not include dumpster-specific data
+
+```{r}
+trash_data =
+  read_excel("./data/mr_trash_wheel.xlsx", sheet = 1, range = "A2:N408") %>%
+  janitor::clean_names() %>%
+  drop_na(dumpster)
+  
+```
 
 
-## Problem 1
