@@ -9,6 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
+library(dplyr)
 ```
 
 ## Problem 1: Mr. Trash Wheel
@@ -37,7 +38,6 @@ precip_17 =
   read_excel("./data/mr_trash_wheel.xlsx", sheet = 6, range = "A2:B14") %>%
   janitor::clean_names() %>%
   mutate(year = 2017)
-
 ```
 
 ```{r}
@@ -45,5 +45,16 @@ precip_18 =
   read_excel("./data/mr_trash_wheel.xlsx", sheet = 5, range = "A2:B14") %>%
   janitor::clean_names() %>%
   mutate(year = 2018)
-
 ```
+
+* Combine precipitation datasets and convert month to a character variable (the variable month.name is built into R and should be useful).
+
+```{r}
+precip_data =
+  full_join(precip_17, precip_18, by = c("month", "year", "total")) %>%
+  arrange(month) %>%
+  mutate(month = month.name[month])
+```
+
+
+
