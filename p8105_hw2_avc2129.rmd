@@ -56,5 +56,16 @@ precip_data =
   mutate(month = month.name[month])
 ```
 
+### Write a paragraph about these data; you are encouraged to use inline R. 
+* Be sure to note the number of observations in both resulting datasets, and give examples of key variables.
+* For available data, what was the total precipitation in 2018? 
+* What was the median number of sports balls in a dumpster in 2017?
+
+In the Mr. Trash Wheel data set, there are `r nrow(trash_data)` observations and `r ncol(trash_data)` columns or variables for each observation. An example of a key variable includes the weight of trash removed, which totals `r sum(pull(trash_data, weight_tons))` tons from May 2014 to June 2019. Another key variable is homes powered, which the average dumpster powered `r mean(pull(trash_data, homes_powered))` homes in the same time frame. The median number of sports balls in a dumpster in 2017 was `r median(pull(filter(trash_data, year == 2017), sports_balls))`. 
+
+In the precipitation data set, there are `r nrow(precip_data)` observations and `r ncol(precip_data)` columns or variables for each observation. An example of a key variable is total precipitation, which averaged `r mean(pull(filter(precip_data, year == 2017), total))` in 2017. An example of another key variable is month, the average precipitation in July for both 2017 and 2018 was `r mean(pull(filter(precip_data, month == "July"), total))`. The total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018),total))`. 
+
+
+
 
 
