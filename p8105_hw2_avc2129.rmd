@@ -75,7 +75,7 @@ In the precipitation data set, there are `r nrow(precip_data)` observations and 
 * remove the day variable.
 
 ```{r, message=FALSE}
-pols_month =
+pols_data =
   read_csv(file = "./data/fivethirtyeight_datasets/pols-month.csv") %>%
   janitor::clean_names() %>%
   separate(mon, into = c("year", "month", "day")) %>%
@@ -104,10 +104,28 @@ snp_data =
   select(year, month, close, -day)
 ```
 
- 
+### Tidy the unemployment data so that it can be merged with the previous datasets. 
+* This process will involve switching from “wide” to “long” format; ensuring that key variables have the same name; and ensuring that key variables take the same values.
 
+```{r, message=FALSE}
+unemploy_data =
+   read_csv(file = "./data/fivethirtyeight_datasets/unemployment.csv") %>%
+  janitor::clean_names() %>%
+  pivot_longer(
+    jan:dec,
+    names_to = "month",
+    values_to = "percent") %>%
+  mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
+```
 
+### Join the datasets by merging snp into pols, and merging unemployment into the result.
 
+```{r, message=FALSE}
+fte_data =
+  left_join(pols_data, snp_data, by = c("month","year")) %>%
+  mutate(year = as.numeric(year)) %>%
+  left_join(unemploy_data, by = c("month", "year"))
+```
 
 
 
