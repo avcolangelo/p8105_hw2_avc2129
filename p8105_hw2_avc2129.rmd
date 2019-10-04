@@ -63,10 +63,41 @@ precip_data =
 
 In the Mr. Trash Wheel data set, there are `r nrow(trash_data)` observations and `r ncol(trash_data)` columns or variables for each observation. An example of a key variable includes the weight of trash removed, which totals `r sum(pull(trash_data, weight_tons))` tons from May 2014 to June 2019. Another key variable is homes powered, which the average dumpster powered `r mean(pull(trash_data, homes_powered))` homes in the same time frame. The median number of sports balls in a dumpster in 2017 was `r median(pull(filter(trash_data, year == 2017), sports_balls))`. 
 
-In the precipitation data set, there are `r nrow(precip_data)` observations and `r ncol(precip_data)` columns or variables for each observation. An example of a key variable is total precipitation, which averaged `r mean(pull(filter(precip_data, year == 2017), total))` in 2017. An example of another key variable is month, the average precipitation in July for both 2017 and 2018 was `r mean(pull(filter(precip_data, month == "July"), total))`. The total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018),total))`. 
+In the precipitation data set, there are `r nrow(precip_data)` observations and `r ncol(precip_data)` columns or variables for each observation. An example of a key variable is total precipitation, which averaged `r mean(pull(filter(precip_data, year == 2017), total))` in 2017. An example of another key variable is month, the average precipitation in July for 2017 and 2018 was `r mean(pull(filter(precip_data, month == "July"), total))`. The total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018),total))`. 
 
-## Problem 2: .... 
-This problem uses the FiveThirtyEight data; these data were gathered to create the interactive graphic on this page. In particular, we’ll use the data in pols-month.csv, unemployment.csv, and snp.csv. Our goal is to merge these into a single data frame using year and month as keys across datasets.
+## Problem 2: 538 
 
-First, clean the data in pols-month.csv. Use separate() to break up the variable mon into integer variables year, month, and day; replace month number with month name; create a president variable taking values gop and dem, and remove prez_dem and prez_gop; and remove the day variable.
+### Clean the data in pols-month.csv.
+
+* Use separate() to break up the variable mon into integer variables year, month, and day
+* Replace month number with month name
+* Create a president variable taking values gop and dem, and remove prez_dem and prez_gop;
+* remove the day variable.
+
+```{r, message=FALSE}
+pols_month =
+  read_csv(file = "./data/fivethirtyeight_datasets/pols-month.csv") %>%
+  janitor::clean_names() %>%
+  separate(mon, into = c("year", "month", "day")) %>%
+  mutate(month = as.integer(month)) %>%
+  mutate(month = month.name[month]) %>%
+  mutate(prez_gop = as.character(prez_gop)) %>%
+  mutate(prez_gop = recode(prez_gop, "1" = "gop", "0" = "dem")) %>%
+  mutate(prez_dem = as.character(prez_dem)) %>%
+  mutate(prez_dem = recode(prez_dem, "1" = "dem", "0" = "gop")) %>%
+  mutate(prez = prez_gop) %>%
+  select(-prez_gop, -prez_dem, -day)
+
+```
+
+
+### Clean the data in snp.csv
+
+
+
+
+
+
+
+
 
