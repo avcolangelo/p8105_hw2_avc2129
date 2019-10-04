@@ -114,7 +114,7 @@ unemploy_data =
   pivot_longer(
     jan:dec,
     names_to = "month",
-    values_to = "percent") %>%
+    values_to = "unemploy_percent") %>%
   mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
 ```
 
@@ -127,6 +127,8 @@ fte_data =
   left_join(unemploy_data, by = c("month", "year"))
 ```
 
+### Write a short paragraph about these datasets. Explain briefly what each dataset contained, and describe the resulting dataset (e.g. give the dimension, range of years, and names of key variables).
 
+The first dataset (pols_data) contained information from January 1947 to June 2015 on which political party held the presidency, and the number and political party of senators, governors, and representatives at that particular time. Pols_data contained `r nrow(pols_data)` total observations and `r ncol(pols_data)` columns/variables. The second dataset (snp_data) included S&P stock index values at close from April 1950 to May 2015. Snp_data contained `r nrow(snp_data)` total observations and `r ncol(snp_data)` columns/variables. Months and years were included in the dataset. The third dataset (unemploy_data) contained unemployment rates in percents for each month and year observed ranging from January 1948 to June  2015 (July to December 2015 rates were NA in the dataset). Unemploy_data contained `r nrow(unemploy_data)` total observations and `r ncol(unemploy_data)` columns/variables. 
 
-
+The resulting dataset (fte_data) containing the three datasets mentioned above contained information ranging from January 1947 to June 2015. It included `r nrow(fte_data)` total observations and `r ncol(fte_data)` columns/variables. Some key variables in the total dataset include the political party of the sitting president, stock index value at close, the percent of unemployment, months, and years.
