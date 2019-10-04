@@ -65,6 +65,5 @@ In the Mr. Trash Wheel data set, there are `r nrow(trash_data)` observations and
 
 In the precipitation data set, there are `r nrow(precip_data)` observations and `r ncol(precip_data)` columns or variables for each observation. An example of a key variable is total precipitation, which averaged `r mean(pull(filter(precip_data, year == 2017), total))` in 2017. An example of another key variable is month, the average precipitation in July for both 2017 and 2018 was `r mean(pull(filter(precip_data, month == "July"), total))`. The total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018),total))`. 
 
-
-
+## Problem 2
 
