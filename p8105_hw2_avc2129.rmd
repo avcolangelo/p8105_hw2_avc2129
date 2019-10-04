@@ -168,8 +168,21 @@ olivia_data
 
 ### Produce a similar table showing the most popular name among male children over time.
 
-
-
-
+```{r}
+male_data = name_data %>%
+  filter(gender == "male", rank == 1) %>%
+  select(-gender) %>%
+  pivot_wider(names_from = "ethnicity", values_from = "rank") %>%
+  arrange(year_of_birth)
+```
+Most Popular Name among Male Children over Time
+```{r}
+male_data
+```
 
 ### For male, white non-hispanic children born in 2016, produce a scatter plot showing the number of children with a name (y axis) against the rank in popularity of that name (x axis).
+```{r}
+name_data %>%
+  filter(gender == "male", ethnicity == "white_nonhisp", year_of_birth == 2016) %>%
+ggplot(aes(x = rank, y = count)) + geom_point(color = "orange")
+```
