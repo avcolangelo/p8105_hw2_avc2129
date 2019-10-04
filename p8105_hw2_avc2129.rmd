@@ -68,4 +68,3 @@ In the precipitation data set, there are `r nrow(precip_data)` observations and 
 
 
 
-
