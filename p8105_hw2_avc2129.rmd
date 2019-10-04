@@ -132,3 +132,17 @@ fte_data =
 The first dataset (pols_data) contained information from January 1947 to June 2015 on which political party held the presidency, and the number and political party of senators, governors, and representatives at that particular time. Pols_data contained `r nrow(pols_data)` total observations and `r ncol(pols_data)` columns/variables. The second dataset (snp_data) included S&P stock index values at close from April 1950 to May 2015. Snp_data contained `r nrow(snp_data)` total observations and `r ncol(snp_data)` columns/variables. Months and years were included in the dataset. The third dataset (unemploy_data) contained unemployment rates in percents for each month and year observed ranging from January 1948 to June  2015 (July to December 2015 rates were NA in the dataset). Unemploy_data contained `r nrow(unemploy_data)` total observations and `r ncol(unemploy_data)` columns/variables. 
 
 The resulting dataset (fte_data) containing the three datasets mentioned above contained information ranging from January 1947 to June 2015. It included `r nrow(fte_data)` total observations and `r ncol(fte_data)` columns/variables. Some key variables in the total dataset include the political party of the sitting president, stock index value at close, the percent of unemployment, months, and years.
+
+## Problem 3: Baby Names
+
+### Load and tidy the data. 
+* Although these data may seem fairly well formatted initially, the names of a categorical predictor and the case structure of string variables changed over time; you’ll need to address this in your data cleaning. 
+
+* Also, some rows seem duplicated, and these will need to be removed (hint: google something like “dplyr remove duplicate rows” to get started).
+
+```{r, message=FALSE}
+name_data =
+  read_csv(file = "./data/popular_baby_names.csv") 
+```
+
+%>%
