@@ -65,5 +65,8 @@ In the Mr. Trash Wheel data set, there are `r nrow(trash_data)` observations and
 
 In the precipitation data set, there are `r nrow(precip_data)` observations and `r ncol(precip_data)` columns or variables for each observation. An example of a key variable is total precipitation, which averaged `r mean(pull(filter(precip_data, year == 2017), total))` in 2017. An example of another key variable is month, the average precipitation in July for both 2017 and 2018 was `r mean(pull(filter(precip_data, month == "July"), total))`. The total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018),total))`. 
 
-## Problem 2
+## Problem 2: .... 
+This problem uses the FiveThirtyEight data; these data were gathered to create the interactive graphic on this page. In particular, we’ll use the data in pols-month.csv, unemployment.csv, and snp.csv. Our goal is to merge these into a single data frame using year and month as keys across datasets.
+
+First, clean the data in pols-month.csv. Use separate() to break up the variable mon into integer variables year, month, and day; replace month number with month name; create a president variable taking values gop and dem, and remove prez_dem and prez_gop; and remove the day variable.
 
