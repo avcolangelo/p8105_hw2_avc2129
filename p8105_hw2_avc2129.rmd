@@ -87,13 +87,24 @@ pols_month =
   mutate(prez_dem = recode(prez_dem, "1" = "dem", "0" = "gop")) %>%
   mutate(prez = prez_gop) %>%
   select(-prez_gop, -prez_dem, -day)
-
 ```
-
 
 ### Clean the data in snp.csv
 
+* Clean the data in snp.csv using a similar process to the above
+* For consistency across datasets, arrange according to year and month, and organize so that year and month are the leading columns.
 
+```{r, message=FALSE}
+snp_data =
+  read_csv(file = "./data/fivethirtyeight_datasets/snp.csv") %>%
+  separate(date, into = c("month", "day", "year")) %>%
+  mutate(month = as.integer(month)) %>%
+  mutate(month = month.name[month]) %>%
+  arrange(year, month) %>%
+  select(year, month, close, -day)
+```
+
+ 
 
 
 
